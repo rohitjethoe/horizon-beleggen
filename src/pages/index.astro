@@ -70,79 +70,23 @@ const tickers = {
 			data: {},
 			logo: "assets/amd.png"
 		},
-	},
-	MATERIALS: {
-		0: {
-			ticker: "CL=F",
-			name: "Ruwe Olie",
-			data: {},
-			logo: "assets/crudeoil.png"
-		},
-		1: {
-			ticker: "GC=F",
-			name: "Goud",
-			data: {},
-			logo: "assets/gold.png"
-		},
-		2: {
-			ticker: "KC=F",
-			name: "Koffie",
-			data: {},
-			logo: 'assets/coffee.png'
-		}
 	}
 }
 
-for (let i = 0; i < Object.keys(tickers.ETF).length; i++) {
-	const data = await yahooFinance.historical({
-		symbol: tickers.ETF[i].ticker,
-		from: fullFromDate,
-		to: fullDate,
-		period: 'm'
-	}, function (err, quotes) {
-		return quotes;
-	});
+for (let i = 0; i < Object.keys(tickers).length; i++) {
+	const types = ["ETF", "STOCKS", "US_STOCKS", "MATERIALS"];
+	for (let j = 0; j < Object.keys(tickers[types[i]]).length; j++) {
+		const data = await yahooFinance.historical({
+			symbol: tickers[types[i]][j].ticker,
+			from: fullFromDate,
+			to: fullDate,
+			period: 'm'
+		}, function (err, quotes) {
+			return quotes;
+		});
 
-	tickers.ETF[i].data = await data;
-}
-
-for (let i = 0; i < Object.keys(tickers.STOCKS).length; i++) {
-	const data = await yahooFinance.historical({
-		symbol: tickers.STOCKS[i].ticker,
-		from: fullFromDate,
-		to: fullDate,
-		period: 'm'
-	}, function (err, quotes) {
-		return quotes;
-	});
-
-	tickers.STOCKS[i].data = await data;
-}
-
-for (let i = 0; i < Object.keys(tickers.US_STOCKS).length; i++) {
-	const data = await yahooFinance.historical({
-		symbol: tickers.US_STOCKS[i].ticker,
-		from: fullFromDate,
-		to: fullDate,
-		period: 'm'
-	}, function (err, quotes) {
-		return quotes;
-	});
-
-	tickers.US_STOCKS[i].data = await data;
-}
-
-for (let i = 0; i < Object.keys(tickers.MATERIALS).length; i++) {
-	const data = await yahooFinance.historical({
-		symbol: tickers.MATERIALS[i].ticker,
-		from: fullFromDate,
-		to: fullDate,
-		period: 'm'
-	}, function (err, quotes) {
-		return quotes;
-	});
-
-	tickers.MATERIALS[i].data = await data;
+		tickers[types[i]][j].data = await data;
+	}
 }
 ---
 
@@ -157,9 +101,13 @@ for (let i = 0; i < Object.keys(tickers.MATERIALS).length; i++) {
 		<div id="us-stocks" class="content">
 			<Cards type="V.S. aandelen" tickers={tickers.US_STOCKS} client:load/>
 		</div>
+		<!-- 
+			Loading will take too long if #materials is added. 
+
 		<div id="materials" class="content">
 			<Cards type="Grondstoffen" tickers={tickers.MATERIALS} client:load/>
-		</div>
+		</div> 
+		-->
 	</main>
 </Layout>
 

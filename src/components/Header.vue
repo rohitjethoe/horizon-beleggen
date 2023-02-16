@@ -31,9 +31,9 @@
                     <li>
                         <a href="#us-stocks">V.S. Aandelen</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#materials">Grondstoffen</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
