@@ -29,10 +29,11 @@ In je projectfolder zul je de volgende mappen en bestanden aantreffen:
 /
 ├── public/
 │   └── favicon.svg
-├── src/
 │   ├── assets/
 │   │   └── ishares.jpg
 │   │   └── vanguard.png
+│   │   ...
+├── src/
 │   ├── components/
 │   │   └── Chart.vue
 │   │   └── Charts.vue
