@@ -40,11 +40,11 @@ export default {
     },
     props: {
         stock: JSON, startingAmount: {
-          type: String,
+          type: null,
           default: 1000
         },
         monthlyAmount: {
-          type: String,
+          type: null,
           default: 100
         }
     },
