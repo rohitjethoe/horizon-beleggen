@@ -1,10 +1,11 @@
 # Horizon Beleggingen Screener
 Horizon Beleggingen Screener voor aandelen, ETF's en meer. 
 
-## Get Started
+## Applicatie gebruiken
 Applicatie bekijken:
 
 ```
+git clone https://github.com/rohitjethoe/horizon-beleggen.git
 npm install
 npm run start
 ```
@@ -12,6 +13,7 @@ npm run start
 Meehelpen aan de applicatie: 
 
 ```
+
 npm install
 npm run dev
 ```
@@ -19,9 +21,9 @@ npm run dev
 
 > 👩‍💻 **Online versie bekijken?** [https://horizonbeleggen.netlify.app](https://horizonbeleggen.netlify.app)
 
-## 🚀 Project Structure
+## 🚀 Projectstructuur
 
-Inside of your Astro project, you'll see the following folders and files:
+In je projectfolder zul je de volgende mappen en bestanden aantreffen:
 
 ```
 /
