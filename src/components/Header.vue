@@ -121,7 +121,7 @@ header {
             padding-bottom: 20px;
             li {
                 list-style-type: none;
-                width: 100vw;
+                width: 96vw;
                 padding: 6px 0px;
                 a:link, a:visited {
                     color: #27332F;
@@ -203,6 +203,7 @@ header::after {
             .nav-sitemap {
                 ul {
                     li {
+                        width: 98vw;
                         padding-left: 2vw;
                     }
                 }
@@ -224,6 +225,7 @@ header::after {
             .nav-sitemap {
                 ul {
                     li {
+                        width: 99vw;
                         padding-left: 1vw;
                     }
                 }
