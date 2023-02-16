@@ -2,7 +2,7 @@
 import yahooFinance from 'yahoo-finance';
 
 import Layout from '../layouts/Layout.astro';
-import Charts from '../components/Charts.vue';
+import Cards from '../components/Cards.vue';
 
 const date = new Date();
 const months = ["01", "02", "03", "04", "05", "06","07", "08", "09", "10", "11", "12"];
@@ -50,6 +50,26 @@ const tickers = {
 			data: {},
 			logo: "assets/ahold-delhaize.png"
 		},
+	},
+	US_STOCKS: {
+		0: {
+			ticker: "TSLA",
+			name: "Tesla, Inc.",
+			data: {},
+			logo: "assets/tesla.png"
+		},
+		1: {
+			ticker: "META",
+			name: "Meta Platforms, Inc.",
+			data: {},
+			logo: "assets/meta.png"
+		},
+		2: {
+			ticker: "AMD",
+			name: "Advanced Micro Devices, Inc.",
+			data: {},
+			logo: "assets/amd.png"
+		}
 	}
 }
 
@@ -78,15 +98,31 @@ for (let i = 0; i < Object.keys(tickers.STOCKS).length; i++) {
 
 	tickers.STOCKS[i].data = await data;
 }
+
+for (let i = 0; i < Object.keys(tickers.US_STOCKS).length; i++) {
+	const data = await yahooFinance.historical({
+		symbol: tickers.US_STOCKS[i].ticker,
+		from: fullFromDate,
+		to: fullDate,
+		period: 'm'
+	}, function (err, quotes) {
+		return quotes;
+	});
+
+	tickers.US_STOCKS[i].data = await data;
+}
 ---
 
 <Layout title="Horizon Beleggen | Screener voor aandelen, ETF's en meer">
 	<main>
 		<div class="content">
-			<Charts type="ETF's" tickers={tickers.ETF} client:load/>
+			<Cards type="ETF's" tickers={tickers.ETF} client:load/>
 		</div>
 		<div class="content">
-			<Charts type="aandelen" tickers={tickers.STOCKS} client:load/>
+			<Cards type="aandelen" tickers={tickers.STOCKS} client:load/>
+		</div>
+		<div class="content">
+			<Cards type="V.S. aandelen" tickers={tickers.US_STOCKS} client:load/>
 		</div>
 	</main>
 </Layout>
