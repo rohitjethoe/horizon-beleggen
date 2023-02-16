@@ -6,7 +6,36 @@
             </a>
         </div>
         <div class="nav">
-            
+            <div 
+                class="nav-burger-icon" 
+                :class="navHandler.opened ? 'nav-opened' : 'nav-closed'"
+                @click="openNavigation()"
+            >
+                <div class="burger-bar burger-bar-1"></div>
+                <div class="burger-bar burger-bar-2"></div>
+            </div>
+            <div 
+                class="nav-sitemap"
+                :class="navHandler.opened ? 'nav-sitemap-opened' : 'nav-sitemap-closed'"
+            >
+                <ul>
+                    <li class="nav-sitemap-title">
+                        Beleggingsproducten
+                    </li>
+                    <li>
+                        <a href="#etfs">ETF's</a>
+                    </li>
+                    <li>
+                        <a href="#stocks">Aandelen</a>
+                    </li>
+                    <li>
+                        <a href="#us-stocks">V.S. Aandelen</a>
+                    </li>
+                    <li>
+                        <a href="#materials">Grondstoffen</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
     <div class="head">
@@ -21,7 +50,7 @@ export default {
     data() {
         return {
             navHandler: {
-                opened: false
+                opened: true
             },
         }
     },
@@ -55,6 +84,59 @@ header {
     }
     .nav {
         float: right;
+        .nav-burger-icon {
+            margin-top: 16px;
+            .burger-bar {
+                width: 30px;
+                height: 2px;
+                background-color: #27332F;
+                transition: 0.5s;
+            }
+            .burger-bar-1 {
+                margin-bottom: 8px;
+            }
+            .burger-bar-2 {
+                margin-top: 8px;
+            }
+        }
+        .nav-opened {
+            .burger-bar-1 {
+                transform: translateY(5px);
+            }
+            .burger-bar-2 {
+                transform: translateY(-5px);
+            }
+        }
+        .nav-burger-icon:hover {
+            cursor: pointer;
+        }
+    }
+    .nav-sitemap {
+        position: absolute;
+        display: none;
+        top: 52px;
+        left: 0;
+        ul {
+            background-color: #fff;
+            padding-bottom: 20px;
+            li {
+                list-style-type: none;
+                width: 100vw;
+                padding: 6px 0px;
+                a:link, a:visited {
+                    color: #27332F;
+                    font-size: 24px;
+                    text-decoration: none;
+                }
+            }
+            .nav-sitemap-title {
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+    }
+    .nav-sitemap-opened {
+        display: block;
     }
 }
 
@@ -81,6 +163,13 @@ header::after {
         padding: 0 4vw;
         padding-bottom: 10px;
         .nav {
+            .nav-sitemap {
+                ul {
+                    li {
+                        padding-left: 4vw;
+                    }
+                }
+            }
         }
     }
     .head {
@@ -111,6 +200,13 @@ header::after {
         padding: 0 2vw;
         padding-bottom: 10px;
         .nav {
+            .nav-sitemap {
+                ul {
+                    li {
+                        padding-left: 2vw;
+                    }
+                }
+            }
         }
     }
     .head {
@@ -125,6 +221,13 @@ header::after {
         padding: 0 1vw;
         padding-bottom: 10px;
         .nav {
+            .nav-sitemap {
+                ul {
+                    li {
+                        padding-left: 1vw;
+                    }
+                }
+            }
         }
     }
     .head {
