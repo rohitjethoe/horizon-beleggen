@@ -9,6 +9,7 @@
 }
 html {
     font-family: 'Sarabun', sans-serif;
+    scroll-behavior: smooth;
 }
 code {
     font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
@@ -18,3 +19,4 @@ code {
 body {
     overflow-x: hidden;
 }
+

@@ -22,7 +22,7 @@ const tickers = {
 			ticker: "IWDA.AS",
 			name: "iShares Core MSCI World UCITS",
 			data: {},
-			logo: "assets/ishares.jpg"
+			logo: "assets/ishares.png"
 		},
 		2: {
 			ticker: "VWRL.AS",
@@ -42,7 +42,7 @@ const tickers = {
 			ticker: "TKWY.AS",
 			name: 'Just Eat Takeaway N.V.',
 			data: {},
-			logo: "assets/just-eat-takeaway.jpg"
+			logo: "assets/just-eat-takeaway.png"
 		},
 		2: {
 			ticker: "AD.AS",
@@ -69,6 +69,26 @@ const tickers = {
 			name: "Advanced Micro Devices, Inc.",
 			data: {},
 			logo: "assets/amd.png"
+		},
+	},
+	MATERIALS: {
+		0: {
+			ticker: "CL=F",
+			name: "Ruwe Olie",
+			data: {},
+			logo: "assets/crudeoil.png"
+		},
+		1: {
+			ticker: "GC=F",
+			name: "Goud",
+			data: {},
+			logo: "assets/gold.png"
+		},
+		2: {
+			ticker: "KC=F",
+			name: "Koffie",
+			data: {},
+			logo: 'assets/coffee.png'
 		}
 	}
 }
@@ -111,18 +131,34 @@ for (let i = 0; i < Object.keys(tickers.US_STOCKS).length; i++) {
 
 	tickers.US_STOCKS[i].data = await data;
 }
+
+for (let i = 0; i < Object.keys(tickers.MATERIALS).length; i++) {
+	const data = await yahooFinance.historical({
+		symbol: tickers.MATERIALS[i].ticker,
+		from: fullFromDate,
+		to: fullDate,
+		period: 'm'
+	}, function (err, quotes) {
+		return quotes;
+	});
+
+	tickers.MATERIALS[i].data = await data;
+}
 ---
 
 <Layout title="Horizon Beleggen | Screener voor aandelen, ETF's en meer">
 	<main>
-		<div class="content">
+		<div id="etfs" class="content">
 			<Cards type="ETF's" tickers={tickers.ETF} client:load/>
 		</div>
-		<div class="content">
+		<div id="stocks" class="content">
 			<Cards type="aandelen" tickers={tickers.STOCKS} client:load/>
 		</div>
-		<div class="content">
+		<div id="us-stocks" class="content">
 			<Cards type="V.S. aandelen" tickers={tickers.US_STOCKS} client:load/>
+		</div>
+		<div id="materials" class="content">
+			<Cards type="Grondstoffen" tickers={tickers.MATERIALS} client:load/>
 		</div>
 	</main>
 </Layout>
