@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="tickers-data">
-        <Chart 
+        <Card 
             v-for="item in tickers"
             v-bind:key="item"
             :stock="item"
@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import Chart from '../components/Chart.vue';
+import Card from './Card.vue';
 
 export default {
-    name: "Charts",
+    name: "Cards",
     data() {
         return {
             startingAmount: 1000,
@@ -46,7 +46,7 @@ export default {
         tickers: JSON, type: String
     },
     components: {
-        Chart
+        Card
     }
 }
 </script>

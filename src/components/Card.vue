@@ -28,7 +28,7 @@
 
 <script>
 export default {
-    name: "Chart",
+    name: "Card",
     data() {
       return {
         profit: 0, 
